@@ -28,7 +28,7 @@ export const Modal: React.FC<ModalProps> = ({
       onClose();
     }
   };
-
+// might need padding top 
   return (
     <Dialog open={isOpen} onOpenChange={onChange}>
       <DialogContent>
