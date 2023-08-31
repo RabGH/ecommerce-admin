@@ -13,6 +13,7 @@ import { useParams, useRouter } from "next/navigation";
 import { Heading } from "@/components/ui/heading";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { AlertModal } from "./modals/alert-modal";
 import { Input } from "@/components/ui/input";
 import {
   Form,
@@ -60,7 +61,12 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
 
   return (
     <>
-      {/* Alert model loading and open states */}
+      <AlertModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        onConfirm={() => {}}
+        loading={loading}
+      />
       <div className="flex items-center justify-between">
         <Heading title="Settings" description="Manage store preferences" />
         <Button
