@@ -10,10 +10,8 @@ import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 
-import { AlertModal } from "./modals/alert-modal";
-import { useOrigin } from "@/hooks/use-origin";
+import { AlertModal } from "../modals/alert-modal";
 import { Heading } from "@/components/ui/heading";
-import { ApiAlert } from "@/components/ui/api-alert";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
@@ -43,7 +41,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
 }) => {
   const params = useParams();
   const router = useRouter();
-  const origin = useOrigin();
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -72,6 +69,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
         await axios.post(`/api/${params.storeId}/billboards`, data);
       }
       router.refresh();
+      router.push(`/${params.storeId}/billboards`);
       toast.success(toastMessage);
     } catch (error) {
       toast.error("Something went wrong.");

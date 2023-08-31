@@ -10,7 +10,7 @@ import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 
-import { AlertModal } from "./modals/alert-modal";
+import { AlertModal } from "../modals/alert-modal";
 import { useOrigin } from "@/hooks/use-origin";
 import { Heading } from "@/components/ui/heading";
 import { ApiAlert } from "@/components/ui/api-alert";
