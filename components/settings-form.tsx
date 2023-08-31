@@ -11,9 +11,10 @@ import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 
 import { Heading } from "@/components/ui/heading";
+import { ApiAlert } from "@/components/ui/api-alert";
+import { AlertModal } from "./modals/alert-modal";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { AlertModal } from "./modals/alert-modal";
 import { Input } from "@/components/ui/input";
 import {
   Form,
@@ -123,6 +124,8 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
           </Button>
         </form>
       </Form>
+      <Separator />
+      <ApiAlert title={""} description={""} variant={"public"} />
     </>
   );
 };
