@@ -10,8 +10,6 @@ export const ModalProvider = () => {
   useEffect(() => {
     setIsMounted(true);
   }, []);
-
-  // Hydration error, useEffect is for client and returns null if it's server, pre-caution
   // Using client components in server files
   if (!isMounted) {
     return null;
