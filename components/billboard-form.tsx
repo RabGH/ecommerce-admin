@@ -17,6 +17,7 @@ import { ApiAlert } from "@/components/ui/api-alert";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
+import ImageUpload from "@/components/ui/image-upload";
 import {
   Form,
   FormControl,
@@ -114,6 +115,24 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-8 w-full"
         >
+          <FormField
+            control={form.control}
+            name="imageUrl"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Background image</FormLabel>
+                <FormControl>
+                  <ImageUpload
+                    disabled={loading}
+                    onChange={(url) => field.onChange(url)}
+                    onRemove={() => field.onChange("")}
+                    value={field.value ? [field.value] : []}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <div className="grid grid-cols-3 gap-8">
             <FormField
               control={form.control}
