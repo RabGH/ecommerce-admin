@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { BillboardColumn } from "@/components/billboard/billboard-columns";
 import { DataTable } from "@/components/ui/data-table";
-import { columns } from "@/components/billboard/billboard-columns";
 import { ApiList } from "@/components/ui/api-list";
+import { columns } from "@/components/billboard/billboard-columns";
 
 interface BillboardClientProps {
   data: BillboardColumn[];
