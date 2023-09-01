@@ -52,7 +52,7 @@ export const StoreModal = () => {
   return (
     <Modal
       title="Create Store"
-      description="Add a new store to manage products."
+      description="Add a new store to manage products"
       isOpen={storeModal.isOpen}
       onClose={storeModal.onClose}
     >

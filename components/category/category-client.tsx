@@ -22,7 +22,7 @@ export const CategoryClient: React.FC<CategoryClientProps> = ({ data }) => {
       <div className="flex items-center justify-between">
         <Heading
           title={`Category (${data.length})`}
-          description="Manage categories for your store."
+          description="Manage categories for your store"
         />
         <Button
           onClick={() => router.push(`/${params.storeId}/categories/new`)}
