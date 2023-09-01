@@ -85,7 +85,7 @@ export async function PATCH(
       return new NextResponse("Unauthorized.", { status: 405 });
     }
 
-    const product = await prismadb.product.update({
+    await prismadb.product.update({
       where: {
         id: params.productId,
       },
@@ -99,10 +99,20 @@ export async function PATCH(
         colorId,
         storeId: params.storeId,
         images: {
+          deleteMany: {},
+        },
+      },
+    });
+
+    const product = await prismadb.product.update({
+      where: {
+        id: params.productId,
+      },
+      data: {
+        images: {
           createMany: {
             data: [...images.map((image: { url: string }) => image)],
           },
-          deleteMany: {},
         },
       },
     });
