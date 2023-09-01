@@ -1,4 +1,5 @@
 "use client";
+
 import { useParams, useRouter } from "next/navigation";
 import { Plus } from "lucide-react";
 
@@ -33,7 +34,7 @@ export const CategoryClient: React.FC<CategoryClientProps> = ({ data }) => {
       </div>
       <Separator />
       <DataTable columns={columns} data={data} searchKey="label" />
-      <Heading title="API" description="API calls for Billboards" />
+      <Heading title="API" description="API calls for Categories" />
       <Separator />
       <ApiList entityName="categories" entityIdName="categoryId" />
     </>
