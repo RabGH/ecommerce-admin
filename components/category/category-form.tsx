@@ -30,8 +30,8 @@ interface CategoryFormProps {
 }
 
 const formSchema = z.object({
-  label: z.string().min(1),
-  imageUrl: z.string().min(1),
+  name: z.string().min(1),
+  billboardId: z.string().min(1),
 });
 
 type CategoryFormValues = z.infer<typeof formSchema>;
@@ -50,7 +50,7 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({ initialData }) => {
 
   const form = useForm<CategoryFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialData || { name: "", billboardId: "", storeId: "", },
+    defaultValues: initialData || { name: "", billboardId: "" },
   });
 
   const onSubmit = async (data: CategoryFormValues) => {
@@ -120,28 +120,10 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({ initialData }) => {
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-8 w-full"
         >
-          <FormField
-            control={form.control}
-            name="imageUrl"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Background image</FormLabel>
-                <FormControl>
-                  <ImageUpload
-                    disabled={loading}
-                    onChange={(url) => field.onChange(url)}
-                    onRemove={() => field.onChange("")}
-                    value={field.value ? [field.value] : []}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
           <div className="grid grid-cols-3 gap-8">
             <FormField
               control={form.control}
-              name="label"
+              name="name"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Name</FormLabel>
