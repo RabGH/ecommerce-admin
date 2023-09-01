@@ -44,7 +44,7 @@ export async function POST(
       },
     });
 
-    return NextResponse.json(billboard);
+    return NextResponse.json(billboard, { status: 200 });
   } catch (error) {
     console.log("[BILLBOARDS_POST]", error);
     return new NextResponse("Internal error", { status: 500 });
