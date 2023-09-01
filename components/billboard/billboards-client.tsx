@@ -5,10 +5,10 @@ import { Plus } from "lucide-react";
 import { Heading } from "@/components/ui/heading";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { BillboardColumn } from "@/components/billboard/billboard-columns";
 import { DataTable } from "@/components/ui/data-table";
 import { ApiList } from "@/components/ui/api-list";
 import { columns } from "@/components/billboard/billboard-columns";
+import { BillboardColumn } from "@/components/billboard/billboard-columns";
 
 interface BillboardsClientProps {
   data: BillboardColumn[];

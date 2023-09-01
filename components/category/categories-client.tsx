@@ -6,10 +6,10 @@ import { Plus } from "lucide-react";
 import { Heading } from "@/components/ui/heading";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { CategoryColumn } from "@/components/category/category-columns";
 import { DataTable } from "@/components/ui/data-table";
 import { ApiList } from "@/components/ui/api-list";
 import { columns } from "@/components/category/category-columns";
+import { CategoryColumn } from "@/components/category/category-columns";
 
 interface CategoriesClientProps {
   data: CategoryColumn[];
