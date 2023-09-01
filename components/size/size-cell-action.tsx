@@ -41,7 +41,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
       toast.success("Size deleted.");
     } catch (error) {
       toast.error(
-        "Make sure all products are removed/deleted before deleting the size."
+        "Make sure all products are deleted before deleting the size."
       );
     } finally {
       setLoading(false);
