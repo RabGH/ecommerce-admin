@@ -22,7 +22,7 @@ export const CategoriesClient: React.FC<CategoriesClientProps> = ({ data }) => {
     <>
       <div className="flex items-center justify-between">
         <Heading
-          title={`Category (${data.length})`}
+          title={`Categories (${data.length})`}
           description="Manage categories for your store"
         />
         <Button
