@@ -2,7 +2,7 @@ import { format } from "date-fns";
 
 import prismadb from "@/lib/prismadb";
 
-import { BillboardClient } from "@/components/billboard/billboard-client";
+import { BillboardsClient } from "@/components/billboard/billboards-client";
 import { BillboardColumn } from "@/components/billboard/billboard-columns";
 
 const BillboardsPage = async ({ params }: { params: { storeId: string } }) => {
@@ -23,7 +23,7 @@ const BillboardsPage = async ({ params }: { params: { storeId: string } }) => {
   return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
-        <BillboardClient data={formattedBillboards} />
+        <BillboardsClient data={formattedBillboards} />
       </div>
     </div>
   );
