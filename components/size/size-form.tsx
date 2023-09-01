@@ -64,7 +64,7 @@ export const SizeForm: React.FC<SizeFormProps> = ({ initialData }) => {
       setLoading(true);
       if (initialData) {
         await axios.patch(
-          `/api/${params.storeId}/sizes/${params.categoryId}`,
+          `/api/${params.storeId}/sizes/${params.sizeId}`,
           data
         );
       } else {
@@ -83,12 +83,14 @@ export const SizeForm: React.FC<SizeFormProps> = ({ initialData }) => {
   const onDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`/api/${params.storeId}/sizes/${params.categoryId}`);
+      await axios.delete(`/api/${params.storeId}/sizes/${params.sizeId}`);
       router.refresh();
       router.push(`/${params.storeId}/sizes`);
       toast.success("Size deleted.");
     } catch (error) {
-      toast.error("Make sure the product is removed before deleting the size.");
+      toast.error(
+        "Make sure all products using this size are deleted before trying to delete the size."
+      );
     } finally {
       setLoading(false);
       setOpen(false);
