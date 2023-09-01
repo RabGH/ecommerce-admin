@@ -1,6 +1,7 @@
-import prismadb from "@/lib/prismadb";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
+
+import prismadb from "@/lib/prismadb";
 
 export async function GET(
   req: Request,
@@ -8,10 +9,10 @@ export async function GET(
 ) {
   try {
     if (!params.billboardId) {
-      return new NextResponse("Billboard ID is required.", { status: 400 });
+      return new NextResponse("Billboard ID is required", { status: 400 });
     }
 
-    const billboard = await prismadb.store.findUnique({
+    const billboard = await prismadb.billboard.findUnique({
       where: {
         id: params.billboardId,
       },
@@ -20,7 +21,7 @@ export async function GET(
     return NextResponse.json(billboard, { status: 200 });
   } catch (error) {
     console.log("[BILLBOARD_GET]", error);
-    return new NextResponse("Internal error.", { status: 500 });
+    return new NextResponse("Internal error", { status: 500 });
   }
 }
 
@@ -34,16 +35,16 @@ export async function PATCH(
     const { label, imageUrl } = body;
 
     if (!userId) {
-      return new NextResponse("Unauthenticated.", { status: 404 });
+      return new NextResponse("Unauthenticated", { status: 403 });
     }
     if (!label) {
-      return new NextResponse("Label is required.", { status: 400 });
+      return new NextResponse("Label is required", { status: 400 });
     }
     if (!imageUrl) {
-      return new NextResponse("Image URL is required.", { status: 400 });
+      return new NextResponse("Image URL is required", { status: 400 });
     }
     if (!params.billboardId) {
-      return new NextResponse("Billboard ID id is required.", { status: 400 });
+      return new NextResponse("Billboard ID id is required", { status: 400 });
     }
 
     const storeByUserId = await prismadb.store.findFirst({
@@ -67,10 +68,10 @@ export async function PATCH(
       },
     });
 
-    return NextResponse.json(billboard);
+    return NextResponse.json(billboard, { status: 200 });
   } catch (error) {
     console.log("[BILLBOARD_PATCH]", error);
-    return new NextResponse("Internal error.", { status: 500 });
+    return new NextResponse("Internal error", { status: 500 });
   }
 }
 
@@ -82,10 +83,10 @@ export async function DELETE(
     const { userId } = auth();
 
     if (!userId) {
-      return new NextResponse("Unauthenticated.", { status: 403 });
+      return new NextResponse("Unauthenticated", { status: 403 });
     }
     if (!params.billboardId) {
-      return new NextResponse("Billboard ID is required.", { status: 400 });
+      return new NextResponse("Billboard ID is required", { status: 400 });
     }
 
     const storeByUserId = await prismadb.store.findFirst({
