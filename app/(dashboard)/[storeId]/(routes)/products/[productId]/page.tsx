@@ -7,6 +7,9 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
     where: {
       id: params.productId,
     },
+    include: {
+      images: true,
+    },
   });
 
   return (
