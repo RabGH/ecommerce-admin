@@ -126,7 +126,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
       toast.success("Product deleted.");
     } catch (error) {
       toast.error(
-        "Make sure you removed all categories using this product first."
+        "Something went wrong while deleting the product."
       );
     } finally {
       setLoading(false);
