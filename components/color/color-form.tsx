@@ -31,7 +31,8 @@ interface ColorFormProps {
 const formSchema = z.object({
   name: z.string().min(1),
   value: z.string().min(7).regex(/^#/, {
-    message: "String must be a valid hex code",
+    message:
+      "String must be a valid hex code, Example: #000000 is the color black.",
   }),
 });
 
