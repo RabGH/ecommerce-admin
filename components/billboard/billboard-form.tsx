@@ -164,6 +164,15 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
           <Button disabled={loading} className="ml-auto" type="submit">
             {action}
           </Button>
+          <Button
+            disabled={loading}
+            className="ml-2"
+            type="button"
+            variant="outline"
+            onClick={() => router.back()}
+          >
+            Cancel
+          </Button>
         </form>
       </Form>
       <Separator />

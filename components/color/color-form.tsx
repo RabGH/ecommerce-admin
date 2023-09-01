@@ -30,7 +30,7 @@ interface ColorFormProps {
 
 const formSchema = z.object({
   name: z.string().min(1),
-  value: z.string().min(4).regex(/^#/, {
+  value: z.string().min(7).regex(/^#/, {
     message: "String must be a valid hex code",
   }),
 });
@@ -163,6 +163,15 @@ export const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
           </div>
           <Button disabled={loading} className="ml-auto" type="submit">
             {action}
+          </Button>
+          <Button
+            disabled={loading}
+            className="ml-2"
+            type="button"
+            variant="outline"
+            onClick={() => router.back()}
+          >
+            Cancel
           </Button>
         </form>
       </Form>
