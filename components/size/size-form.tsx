@@ -1,6 +1,6 @@
 "use client";
 
-import { Billboard, Category, Size, Store } from "@prisma/client";
+import { Size } from "@prisma/client";
 import { Trash } from "lucide-react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -33,18 +33,16 @@ import {
 
 interface SizeFormProps {
   initialData: Size | null;
-  stores: Store[];
 }
 
 const formSchema = z.object({
   name: z.string().min(1),
-  storeId: z.string().min(1),
   value: z.string().min(1),
 });
 
 type SizeFormValues = z.infer<typeof formSchema>;
 
-export const SizeForm: React.FC<SizeFormProps> = ({ initialData, stores }) => {
+export const SizeForm: React.FC<SizeFormProps> = ({ initialData }) => {
   const params = useParams();
   const router = useRouter();
 
@@ -58,7 +56,7 @@ export const SizeForm: React.FC<SizeFormProps> = ({ initialData, stores }) => {
 
   const form = useForm<SizeFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialData || { name: "", storeId: "", value: "" },
+    defaultValues: initialData || { name: "", value: "" },
   });
 
   const onSubmit = async (data: SizeFormValues) => {
@@ -85,16 +83,12 @@ export const SizeForm: React.FC<SizeFormProps> = ({ initialData, stores }) => {
   const onDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(
-        `/api/${params.storeId}/sizes/${params.categoryId}`
-      );
+      await axios.delete(`/api/${params.storeId}/sizes/${params.categoryId}`);
       router.refresh();
       router.push(`/${params.storeId}/sizes`);
       toast.success("Size deleted.");
     } catch (error) {
-      toast.error(
-        "Make sure the product is removed before deleting the size."
-      );
+      toast.error("Make sure the product is removed before deleting the size.");
     } finally {
       setLoading(false);
       setOpen(false);
@@ -148,32 +142,17 @@ export const SizeForm: React.FC<SizeFormProps> = ({ initialData, stores }) => {
             />
             <FormField
               control={form.control}
-              name="storeId"
+              name="value"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Billboard</FormLabel>
-                  <Select
-                    disabled={loading}
-                    onValueChange={field.onChange}
-                    value={field.value}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue
-                          defaultValue={field.value}
-                          placeholder="Select a category"
-                        />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {stores.map((store) => (
-                        <SelectItem key={store.id} value={store.id}>
-                          {store.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <FormLabel>Value</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={loading}
+                      placeholder="Size Value"
+                      {...field}
+                    />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
