@@ -70,8 +70,8 @@ export async function PATCH(
     if (!images || !images.length) {
       return new NextResponse("Images are required", { status: 400 });
     }
-    if (!params.storeId) {
-      return new NextResponse("Store id is required", { status: 400 });
+    if (!params.productId) {
+      return new NextResponse("Product id is required", { status: 400 });
     }
 
     const storeByUserId = await prismadb.store.findFirst({
@@ -97,7 +97,6 @@ export async function PATCH(
         categoryId,
         sizeId,
         colorId,
-        storeId: params.storeId,
         images: {
           deleteMany: {},
         },
