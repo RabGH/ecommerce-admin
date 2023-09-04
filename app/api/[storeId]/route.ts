@@ -9,15 +9,7 @@ export async function GET(
 ) {
   try {
     const { userId } = auth();
-    const body = await req.json();
-    const { name, Id } = body;
 
-    if (!name) {
-      return new NextResponse("Name is required", { status: 400 });
-    }
-    if (!Id) {
-      return new NextResponse("Id is required", { status: 400 });
-    }
     if (!userId) {
       return new NextResponse("Unauthenticated", { status: 403 });
     }
