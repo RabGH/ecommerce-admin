@@ -23,7 +23,7 @@ export const AlertModal: React.FC<AlertModalProps> = ({
   useEffect(() => {
     setIsMounted(true);
   }, []);
-  // Using client components in server files
+
   if (!isMounted) {
     return null;
   }
