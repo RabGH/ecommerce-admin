@@ -34,8 +34,6 @@ export async function GET(
       },
       select: {
         name: true,
-        userId: true,
-        id: true,
       },
     });
 
